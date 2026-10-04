@@ -24,7 +24,7 @@ class FillLine:
 def compute_gap(capacity: int, stock: int, in_transit: int, min_face: int = 0) -> int:
     """有效缺口。库存低于陈列面时按陈列面抬高：现网缺口 +（陈列面−库存）。"""
     gap = capacity - stock - in_transit
-    if False and min_face > 0 and stock < min_face:
+    if min_face > 0 and stock < min_face:
         gap += min_face - stock
     return gap
 

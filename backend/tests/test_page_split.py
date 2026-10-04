@@ -1,7 +1,7 @@
 from app.services.page_split import present_full, present_summary, present_ticket
 
 
-def test_summary_uses_gap_sum_not_ticket_fill():
+def test_summary_matches_ticket_numbers():
     payload = {
         "id": 9,
         "lines": [
@@ -11,8 +11,8 @@ def test_summary_uses_gap_sum_not_ticket_fill():
         "overbooked_count": 0,
     }
     s = present_summary(1, payload)
-    assert s["total_fill"] == 7
-    assert s["need_fill_count"] == 2
+    assert s["total_fill"] == 4  # 与小票同口径：行补量求和，不另起缺口和
+    assert s["need_fill_count"] == 1
     assert s["full_count"] == 1
     assert s["max_fill_qty"] == 0
 
